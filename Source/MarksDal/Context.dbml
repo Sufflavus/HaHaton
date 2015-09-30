@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MarkDB" Class="ContextDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=MarkDB;Integrated Security=True" SettingsObjectName="MarksDal.Properties.Settings" SettingsPropertyName="MarkDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Mark" Member="Marks">
+    <Type Name="Mark">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="DateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Mark" Member="Mark1" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="FromId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ToId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Mark_MarkRequest" Member="MarkRequests" ThisKey="Id" OtherKey="MarkId" Type="MarkRequest" />
+      <Association Name="User1_Mark" Member="User11" ThisKey="FromId" OtherKey="Id" Type="User" IsForeignKey="true" />
+      <Association Name="User1_Mark1" Member="User12" ThisKey="ToId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.MarkRequest" Member="MarkRequests">
+    <Type Name="MarkRequest">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="AuthorId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MarkId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Mark_MarkRequest" Member="Mark" ThisKey="MarkId" OtherKey="Id" Type="Mark" IsForeignKey="true" />
+      <Association Name="User1_MarkRequest" Member="User" ThisKey="AuthorId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ActiveDirectoryId" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MiddleName" Type="System.String" DbType="NChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="User1_Mark" Member="Marks" ThisKey="Id" OtherKey="FromId" Type="Mark" />
+      <Association Name="User1_Mark1" Member="Marks1" ThisKey="Id" OtherKey="ToId" Type="Mark" />
+      <Association Name="User1_MarkRequest" Member="MarkRequests" ThisKey="Id" OtherKey="AuthorId" Type="MarkRequest" />
+      <Association Name="User1_User1" Member="Users" ThisKey="Id" OtherKey="ParentId" Type="User" />
+      <Association Name="User1_User1" Member="User11" ThisKey="ParentId" OtherKey="Id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

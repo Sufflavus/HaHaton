@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Context">
+  <DataContextMoniker Name="/ContextDataContext" />
+  <nestedChildShapes>
+    <classShape Id="a3b0a1e1-34ac-44f8-8fd7-92fe2ac3e6e2" absoluteBounds="5, 0.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ContextDataContext/Mark" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dda3919a-698b-47a5-971f-4c68cf7b9f98" absoluteBounds="5.0150000000000006, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c6a84b20-b4b5-4d9a-b339-ac7f415a91ab" absoluteBounds="4.75, 3.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/ContextDataContext/MarkRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2e17face-e734-4b13-b32a-17fdd21590ea" absoluteBounds="4.765, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.875 : 2.27089680989583); (5.875 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ContextDataContext/Mark/Mark_MarkRequest" />
+      <nodes>
+        <classShapeMoniker Id="a3b0a1e1-34ac-44f8-8fd7-92fe2ac3e6e2" />
+        <classShapeMoniker Id="c6a84b20-b4b5-4d9a-b339-ac7f415a91ab" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="4025f683-6d00-459f-9acc-0b678bde6f7c" absoluteBounds="1, 1.125, 2, 1.9631982421875">
+      <DataClassMoniker Name="/ContextDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="95d24bcb-93d5-473d-8bb3-4b3d5404b907" absoluteBounds="1.0150000000000001, 1.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3 : 1.69794840494792); (5 : 1.69794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ContextDataContext/User/User1_Mark" />
+      <nodes>
+        <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
+        <classShapeMoniker Id="a3b0a1e1-34ac-44f8-8fd7-92fe2ac3e6e2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 1.34897420247396); (5 : 1.34897420247396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ContextDataContext/User/User1_Mark1" />
+      <nodes>
+        <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
+        <classShapeMoniker Id="a3b0a1e1-34ac-44f8-8fd7-92fe2ac3e6e2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3 : 2.71079752604167); (4.84375 : 2.71079752604167); (4.84375 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ContextDataContext/User/User1_MarkRequest" />
+      <nodes>
+        <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
+        <classShapeMoniker Id="c6a84b20-b4b5-4d9a-b339-ac7f415a91ab" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.70863627929688 : 3.0881982421875); (1.70863627929688 : 3.3381982421875); (2.30523818359375 : 3.3381982421875); (2.30523818359375 : 3.0881982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ContextDataContext/User/User1_User1" />
+      <nodes>
+        <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
+        <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

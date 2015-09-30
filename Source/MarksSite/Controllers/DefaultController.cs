@@ -26,7 +26,7 @@ namespace MarksSite.Controllers
         {
             using (
                 var userContext = new PrincipalContext(
-                    ContextType.Domain, "", "", ""))
+                    ContextType.Domain, "infotecs-nt", "lr.knowledge.base", ",jrcnfgjx"))
             {
                 using (UserPrincipal userPrincipal = UserPrincipal.FindByIdentity(userContext, login))
                 {
