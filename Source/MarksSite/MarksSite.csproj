@@ -220,7 +220,6 @@
     <Content Include="ScriptsCustom\ViewModels\mark-list.page.js" />
     <Content Include="App_Code\Css.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
-    <Content Include="ScriptsCustom\ViewModels\rate.page.js" />
     <Content Include="ScriptsCustom\ViewModels\user-list.page.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

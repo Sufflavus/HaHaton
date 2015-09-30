@@ -8,21 +8,42 @@
 
 <h2>Список сотрудников</h2>
 
-<div>
-    <a class="btn btn-primary" data-bind="css: {disabled: selectedUsers().length != 1}, attr: {href: markingUrl}">Оценить</a>
-    <a class="btn btn-primary" data-bind="css: {disabled: !selectedUsers().length}, click: sendRequest">Отправить запрос</a>
+<div class="container">
+    <div class="row">
+        <div class="span4 ">
+            Оцениваемые сотрудники:
+
+            <ul class="nav nav-list" data-bind="foreach: users">
+                <li class="list-group-item">
+                    <label>
+                        <input type="checkbox" data-bind="checked: selected" />
+                        <span data-bind="text: name"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <div class="span4">
+            Получатели:
+
+            <ul class="list-group" data-bind="foreach: users">
+                <li class="list-group-item">
+                    <label>
+                        <input type="checkbox" data-bind="checked: selected" />
+                        <span data-bind="text: name"></span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+
+        <div class="span4">
+            <a class="btn btn-primary" data-bind="css: { disabled: !selectedUsers().length }, click: sendRequest">Отправить запрос</a>
+
+        </div>
+    </div>
 </div>
 
-<div>
-    <ul class="list-group" data-bind="foreach: users">
-        <li class="list-group-item">
-            <label>
-                <input type="checkbox" data-bind="checked: selected" />
-                <span data-bind="text: name"></span>
-            </label>
-        </li>
-    </ul>
-</div>
+
+
 
 @section scripts
 {
