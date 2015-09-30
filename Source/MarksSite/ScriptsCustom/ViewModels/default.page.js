@@ -3,7 +3,7 @@
     function User(model) {
         var self = this;
         self.domainName = model.DomainName;
-        self.name = model.Name;
+        self.name = model.FullName;
     }
 
     function bindUser(model) {
