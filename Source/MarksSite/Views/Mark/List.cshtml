@@ -1,4 +1,4 @@
-﻿@using MarksSite.Models
+﻿@using System
 @using Newtonsoft.Json
 @model MarksSite.Models.MarkViewModel
 @{
@@ -6,14 +6,67 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List</h2>
+<h2>Мои оценки</h2>
+<div class="row">
+    <div class="span7">
+        <span data-bind="text: from"></span>
+        <span data-bind="text: date"></span>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Критерии</th>
+                    <th>Оценки</th>
+                    <th>Комментарий</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Продуктивность</td>
+                    <td data-bind="text: markDetails.Productivity.Value"></td>
+                    <td data-bind="text: markDetails.Productivity.Comment"></td>
+                </tr>
+                <tr>
+                    <td>Качество работы</td>
+                    <td data-bind="text: markDetails.Quality.Value"></td>
+                    <td data-bind="text: markDetails.Quality.Comment"></td>
+                </tr>
+                <tr>
+                    <td>Дисциплина</td>
+                    <td data-bind="text: markDetails.Discipline.Value"></td>
+                    <td data-bind="text: markDetails.Discipline.Comment"></td>
+                </tr>
+                <tr>
+                    <td>Сотрудничество</td>
+                    <td data-bind="text: markDetails.Cooperation.Value"></td>
+                    <td data-bind="text: markDetails.Cooperation.Comment"></td>
+                </tr>
+                <tr>
+                    <td>Профессиональные знания и навыки</td>
+                    <td data-bind="text: markDetails.Skills.Value"></td>
+                    <td data-bind="text: markDetails.Skills.Comment"></td>
+                </tr>
+                <tr>
+                    <td>Инициативность</td>
+                    <td data-bind="text: markDetails.Initiative.Value"></td>
+                    <td data-bind="text: markDetails.Initiative.Comment"></td>
+                </tr>
+                <tr>
+                    <td>Развитие</td>
+                    <td data-bind="text: markDetails.Growth.Value"></td>
+                    <td data-bind="text: markDetails.Growth.Comment"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 @section scripts
 {
     @JavaScript.AddCustom("ViewModels/mark.page.js")
     <script type="text/javascript">
         @{
-             IHtmlString mark = Html.Raw(JsonConvert.SerializeObject(Model));
-         }
+            IHtmlString mark = Html.Raw(JsonConvert.SerializeObject(Model));
+        }
         MarksSite.viewmodels.markPage.bindMark(@Html.Raw(mark));
     </script>
 }

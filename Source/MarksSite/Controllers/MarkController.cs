@@ -33,7 +33,7 @@ namespace MarksSite.Controllers
                 Date = DateTime.Today,
                 MarkDetails = details
             };
-            return View();
+            return View(mark);
         }
 
     }
