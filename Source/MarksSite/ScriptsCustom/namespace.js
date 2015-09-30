@@ -1,0 +1,2 @@
+﻿var MarksSite = {};
+MarksSite.viewmodels = {};

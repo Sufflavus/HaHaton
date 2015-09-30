@@ -1,6 +1,23 @@
-﻿@{
+﻿@using MarksSite.Models
+@using Newtonsoft.Json
+
+@model User
+
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2 data-bind="text: name"></h2>
+
+@section scripts
+{
+    @JavaScript.AddCustom("ViewModels/default.page.js")
+
+    <script type="text/javascript">
+        @{
+            IHtmlString user = Html.Raw(JsonConvert.SerializeObject(Model));
+        }
+        MarksSite.viewmodels.defaultPage.bindUser(@Html.Raw(user));
+    </script>
+}

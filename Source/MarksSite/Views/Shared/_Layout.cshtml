@@ -11,6 +11,10 @@
     @RenderBody()
 
     @Scripts.Render("~/bundles/jquery")
+
+    @JavaScript.AddKnockout()
+    @JavaScript.AddCustom("namespace.js")
+
     @RenderSection("scripts", required: false)
 </body>
 </html>
