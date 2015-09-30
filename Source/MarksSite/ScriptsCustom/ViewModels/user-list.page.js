@@ -7,7 +7,6 @@
         self.name = model.FullName;
         self.isManager = model.IsManager;
         self.selected = ko.observable(false);
-        self.selectedId = ko.observable();
     }
 
     function UserList(model) {
@@ -26,12 +25,13 @@
                 return item.id;
             });
         });
+        self.selectedId = ko.observable(0);
 
         self.markingUrl = ko.computed(function () {
-            if (!self.selectedUsers().length) {
+            if (!self.selectedId) {
                 return "#";
             }
-            return "/mark/AddNewMark?forWhom=" + self.selectedUsers()[0];
+            return "/mark/AddNewMark?forWhom=" + self.selectedId();
         });
 
         self.sendRequest = function () {

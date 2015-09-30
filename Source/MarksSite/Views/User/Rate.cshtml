@@ -10,7 +10,7 @@
 <div>
     <select  data-bind="options: users, optionsText: 'name', optionsValue: 'id', value: selectedId, optionsCaption: 'Выберите...'"></select>
 <a class="btn btn-primary" data-bind="css: { disabled: !selectedId() }, attr: { href: markingUrl }">Оценить</a>
-
+<div data-bind="text: selectedId"></div>
 
 </div>
 
