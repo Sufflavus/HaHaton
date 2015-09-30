@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarksSite", "Source\MarksSite\MarksSite.csproj", "{47C82FCA-AF62-4F39-BB9F-4A50423FD586}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarksDal", "Source\MarksDal\MarksDal.csproj", "{5466C03E-C6EB-417C-8AB5-387C2D375FDA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadADUtility", "LoadADUtility\LoadADUtility.csproj", "{C09BEAA3-86AB-4098-B08A-234B5BA5037D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoadADUtility", "Source\LoadADUtility\LoadADUtility.csproj", "{C09BEAA3-86AB-4098-B08A-234B5BA5037D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
