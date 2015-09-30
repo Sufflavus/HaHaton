@@ -30,6 +30,7 @@ namespace MarksSite.Controllers
 
             return new UserViewModel
                 {
+                    Id = user.Id,
                     Email = string.Empty,
                     FullName = user.FirstName,
                     DomainName = string.Empty,
