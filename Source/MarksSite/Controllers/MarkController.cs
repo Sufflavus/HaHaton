@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using MarksDal;
 using MarksSite.Models;
@@ -14,10 +15,11 @@ namespace MarksSite.Controllers
         public ActionResult AddNewMark(int forWhom)
         {
             var authorUser = (UserViewModel) Session["CurrentUser"];
+            User toUser = repository.GetUsers().FirstOrDefault(x => x.Id == forWhom);
             var mark = new MarkEditModel
                 {
                     From = authorUser.FullName,
-                    To = "Кому оценили",
+                    To = toUser == null ? "Неизвестный пользователь" : toUser.FirstName,
                     ToId = forWhom
                 };
             return View(mark);
