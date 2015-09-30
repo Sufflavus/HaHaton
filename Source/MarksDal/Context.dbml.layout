@@ -14,7 +14,7 @@
         <elementListCompartment Id="2e17face-e734-4b13-b32a-17fdd21590ea" absoluteBounds="4.765, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(5.875 : 2.27089680989583); (5.875 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.875 : 2.27089680989583); (5.875 : 3.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ContextDataContext/Mark/Mark_MarkRequest" />
       <nodes>
         <classShapeMoniker Id="a3b0a1e1-34ac-44f8-8fd7-92fe2ac3e6e2" />
@@ -28,31 +28,24 @@
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(3 : 1.69794840494792); (5 : 1.69794840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ContextDataContext/User/User1_Mark" />
+      <AssociationMoniker Name="/ContextDataContext/User/User_Mark" />
       <nodes>
         <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
         <classShapeMoniker Id="a3b0a1e1-34ac-44f8-8fd7-92fe2ac3e6e2" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(3 : 1.34897420247396); (5 : 1.34897420247396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ContextDataContext/User/User1_Mark1" />
+      <AssociationMoniker Name="/ContextDataContext/User/User_Mark1" />
       <nodes>
         <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
         <classShapeMoniker Id="a3b0a1e1-34ac-44f8-8fd7-92fe2ac3e6e2" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(3 : 2.71079752604167); (4.84375 : 2.71079752604167); (4.84375 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/ContextDataContext/User/User1_MarkRequest" />
+      <AssociationMoniker Name="/ContextDataContext/User/User_MarkRequest" />
       <nodes>
         <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
         <classShapeMoniker Id="c6a84b20-b4b5-4d9a-b339-ac7f415a91ab" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(1.70863627929688 : 3.0881982421875); (1.70863627929688 : 3.3381982421875); (2.30523818359375 : 3.3381982421875); (2.30523818359375 : 3.0881982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/ContextDataContext/User/User1_User1" />
-      <nodes>
-        <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
-        <classShapeMoniker Id="4025f683-6d00-459f-9acc-0b678bde6f7c" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

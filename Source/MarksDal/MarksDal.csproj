@@ -60,7 +60,9 @@
     <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Context.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Context.designer.cs</LastGenOutput>

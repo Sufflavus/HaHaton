@@ -263,7 +263,7 @@ namespace MarksDal
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User1_Mark", Storage="_User11", ThisKey="FromId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Mark", Storage="_User11", ThisKey="FromId", OtherKey="Id", IsForeignKey=true)]
 		public User From
 		{
 			get
@@ -292,12 +292,12 @@ namespace MarksDal
 					{
 						this._FromId = default(int);
 					}
-					this.SendPropertyChanged("Parent");
+					this.SendPropertyChanged("From");
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User1_Mark1", Storage="_User12", ThisKey="ToId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Mark1", Storage="_User12", ThisKey="ToId", OtherKey="Id", IsForeignKey=true)]
 		public User To
 		{
 			get
@@ -382,7 +382,7 @@ namespace MarksDal
 		
 		private EntityRef<Mark> _Mark;
 		
-		private EntityRef<User> Author;
+		private EntityRef<User> _User;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -403,11 +403,11 @@ namespace MarksDal
 		public MarkRequest()
 		{
 			this._Mark = default(EntityRef<Mark>);
-			this.Author = default(EntityRef<User>);
+			this._User = default(EntityRef<User>);
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -438,7 +438,7 @@ namespace MarksDal
 			{
 				if ((this._AuthorId != value))
 				{
-					if (this.Author.HasLoadedOrAssignedValue)
+					if (this._User.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -549,26 +549,26 @@ namespace MarksDal
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User1_MarkRequest", Storage="Author", ThisKey="AuthorId", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_MarkRequest", Storage="_User", ThisKey="AuthorId", OtherKey="Id", IsForeignKey=true)]
 		public User User
 		{
 			get
 			{
-				return this.Author.Entity;
+				return this._User.Entity;
 			}
 			set
 			{
-				User previousValue = this.Author.Entity;
+				User previousValue = this._User.Entity;
 				if (((previousValue != value) 
-							|| (this.Author.HasLoadedOrAssignedValue == false)))
+							|| (this._User.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this.Author.Entity = null;
+						this._User.Entity = null;
 						previousValue.MarkRequests.Remove(this);
 					}
-					this.Author.Entity = value;
+					this._User.Entity = value;
 					if ((value != null))
 					{
 						value.MarkRequests.Add(this);
@@ -620,17 +620,13 @@ namespace MarksDal
 		
 		private string _MiddleName;
 		
-		private System.Nullable<int> _ParentId;
+		private System.Nullable<bool> _ParentId;
 		
 		private EntitySet<Mark> _Marks;
 		
 		private EntitySet<Mark> _Marks1;
 		
 		private EntitySet<MarkRequest> _MarkRequests;
-		
-		private EntitySet<User> _Users;
-		
-		private EntityRef<User> _User11;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -646,8 +642,8 @@ namespace MarksDal
     partial void OnLastNameChanged();
     partial void OnMiddleNameChanging(string value);
     partial void OnMiddleNameChanged();
-    partial void OnParentIdChanging(System.Nullable<int> value);
-    partial void OnParentIdChanged();
+    partial void OnIsManagerChanging(System.Nullable<bool> value);
+    partial void OnIsManagerChanged();
     #endregion
 		
 		public User()
@@ -655,8 +651,6 @@ namespace MarksDal
 			this._Marks = new EntitySet<Mark>(new Action<Mark>(this.attach_Marks), new Action<Mark>(this.detach_Marks));
 			this._Marks1 = new EntitySet<Mark>(new Action<Mark>(this.attach_Marks1), new Action<Mark>(this.detach_Marks1));
 			this._MarkRequests = new EntitySet<MarkRequest>(new Action<MarkRequest>(this.attach_MarkRequests), new Action<MarkRequest>(this.detach_MarkRequests));
-			this._Users = new EntitySet<User>(new Action<User>(this.attach_Users), new Action<User>(this.detach_Users));
-			this._User11 = default(EntityRef<User>);
 			OnCreated();
 		}
 		
@@ -761,7 +755,7 @@ namespace MarksDal
 		}
 		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentId", DbType="Int")]
-		public System.Nullable<int> ParentId
+		public System.Nullable<bool> IsManager
 		{
 			get
 			{
@@ -771,20 +765,16 @@ namespace MarksDal
 			{
 				if ((this._ParentId != value))
 				{
-					if (this._User11.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnParentIdChanging(value);
+					this.OnIsManagerChanging(value);
 					this.SendPropertyChanging();
 					this._ParentId = value;
-					this.SendPropertyChanged("ParentId");
-					this.OnParentIdChanged();
+					this.SendPropertyChanged("IsManager");
+					this.OnIsManagerChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User1_Mark", Storage="_Marks", ThisKey="Id", OtherKey="FromId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Mark", Storage="_Marks", ThisKey="Id", OtherKey="FromId")]
 		public EntitySet<Mark> Marks
 		{
 			get
@@ -797,7 +787,7 @@ namespace MarksDal
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User1_Mark1", Storage="_Marks1", ThisKey="Id", OtherKey="ToId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Mark1", Storage="_Marks1", ThisKey="Id", OtherKey="ToId")]
 		public EntitySet<Mark> Marks1
 		{
 			get
@@ -810,7 +800,7 @@ namespace MarksDal
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User1_MarkRequest", Storage="_MarkRequests", ThisKey="Id", OtherKey="AuthorId")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_MarkRequest", Storage="_MarkRequests", ThisKey="Id", OtherKey="AuthorId")]
 		public EntitySet<MarkRequest> MarkRequests
 		{
 			get
@@ -820,53 +810,6 @@ namespace MarksDal
 			set
 			{
 				this._MarkRequests.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User1_User1", Storage="_Users", ThisKey="Id", OtherKey="ParentId")]
-		public EntitySet<User> Users
-		{
-			get
-			{
-				return this._Users;
-			}
-			set
-			{
-				this._Users.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User1_User1", Storage="_User11", ThisKey="ParentId", OtherKey="Id", IsForeignKey=true)]
-		public User Parent
-		{
-			get
-			{
-				return this._User11.Entity;
-			}
-			set
-			{
-				User previousValue = this._User11.Entity;
-				if (((previousValue != value) 
-							|| (this._User11.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._User11.Entity = null;
-						previousValue.Users.Remove(this);
-					}
-					this._User11.Entity = value;
-					if ((value != null))
-					{
-						value.Users.Add(this);
-						this._ParentId = value.Id;
-					}
-					else
-					{
-						this._ParentId = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("Parent");
-				}
 			}
 		}
 		
@@ -924,18 +867,6 @@ namespace MarksDal
 		{
 			this.SendPropertyChanging();
 			entity.User = null;
-		}
-		
-		private void attach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Parent = this;
-		}
-		
-		private void detach_Users(User entity)
-		{
-			this.SendPropertyChanging();
-			entity.Parent = null;
 		}
 	}
 }
