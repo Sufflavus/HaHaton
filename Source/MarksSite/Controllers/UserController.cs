@@ -9,9 +9,7 @@ namespace MarksSite.Controllers
     public class UserController : Controller
     {
         private static readonly Repository repository = new Repository();
-        //
-        // GET: /User/
-
+        
         public ActionResult List(int userId)
         {
             IEnumerable<User> users =
