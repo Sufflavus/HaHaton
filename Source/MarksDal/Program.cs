@@ -1,22 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarksDal
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void CreateMark(Repository repository)
         {
-            var repository = new Repository();
-            repository.CreateDatabase();
+            repository.AddMarks(new[]
+                {
+                    new Mark
+                        {
+                            Json = "bla-bla json",
+                            DateTime = DateTime.Now,
+                            From = repository.GetUsers().First(),
+                            To = repository.GetUsers().Last(),
+                        }
+                });
+            repository.Save();
 
-            CreateUsersWithParent(repository);
-            CreateMark(repository);
-            CreateMarkRequest(repository);
+            Console.WriteLine(repository.GetUsers().Count);
         }
 
         private static void CreateMarkRequest(Repository repository)
@@ -37,32 +40,31 @@ namespace MarksDal
 
         private static void CreateUsersWithParent(Repository repository)
         {
-            repository.AddUsers(new[] {new User
-            {
-                ActiveDirectoryId = "Infotecs-nt/dd",
-                FirstName = "dd",
-                LastName = "ddd",
-                MiddleName = "ddd",
-                IsManager = false
-               // Parent = repository.GetUsers().Where(i => i.Id == 2).First()
-            }});
+            repository.AddUsers(new[]
+                {
+                    new User
+                        {
+                            ActiveDirectoryId = "Infotecs-nt/dd",
+                            FirstName = "dd",
+                            LastName = "ddd",
+                            MiddleName = "ddd",
+                            IsManager = false
+                            // Parent = repository.GetUsers().Where(i => i.Id == 2).First()
+                        }
+                });
             repository.Save();
 
             Console.WriteLine(repository.GetUsers().Count);
         }
 
-        private static void CreateMark(Repository repository)
+        private static void Main(string[] args)
         {
-            repository.AddMarks(new[] {new Mark
-            {
-                Json = "bla-bla json",
-                DateTime = DateTime.Now,
-                From = repository.GetUsers().First(),
-                To = repository.GetUsers().Last(),
-            }});
-            repository.Save();
+            var repository = new Repository();
+            repository.CreateDatabase();
 
-            Console.WriteLine(repository.GetUsers().Count);
+            CreateUsersWithParent(repository);
+            CreateMark(repository);
+            CreateMarkRequest(repository);
         }
     }
 }

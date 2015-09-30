@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MarksSite.Models
+﻿namespace MarksSite.Models
 {
     public enum MarkType
     {

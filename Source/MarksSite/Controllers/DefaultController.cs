@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.DirectoryServices.AccountManagement;
-using System.Web.Mvc;
-using MarksSite.Extensions;
-using MarksSite.Models;
-using MarksDal;
+﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
+using MarksDal;
+using MarksSite.Models;
 
 namespace MarksSite.Controllers
 {
@@ -13,7 +10,7 @@ namespace MarksSite.Controllers
     {
         //
         // GET: /Default/                
-        private static Repository repository = new Repository();
+        private static readonly Repository repository = new Repository();
 
         public ActionResult Index()
         {
@@ -23,11 +20,25 @@ namespace MarksSite.Controllers
             return View(userViewModel);
         }
 
-        
+
+        private static IEnumerable<MarkRequestViewModel> GetRequestsForUser(User user)
+        {
+            foreach (Mark mark in user.Marks)
+            {
+                yield return
+                    new MarkRequestViewModel
+                        {
+                            Author = mark.From.FirstName,
+                            Date = mark.DateTime,
+                            Employee = mark.To.FirstName
+                        };
+            }
+        }
+
         private static UserViewModel GetUserByLogin(string login)
-        {                                    
-            var user = repository.GetUserByActivedirectoryId(login);
-            var requests = GetRequestsForUser(user).ToList();
+        {
+            User user = repository.GetUserByActivedirectoryId(login);
+            List<MarkRequestViewModel> requests = GetRequestsForUser(user).ToList();
 
             return new UserViewModel
                 {
@@ -35,19 +46,11 @@ namespace MarksSite.Controllers
                     Email = string.Empty,
                     FullName = user.FirstName,
                     DomainName = string.Empty,
-                    IsManager = (bool)user.IsManager,
+                    IsManager = (bool) user.IsManager,
                     Department = string.Empty,
                     JobPosition = string.Empty,
                     Requests = requests
                 };
-        }
-
-        private static IEnumerable<MarkRequestViewModel> GetRequestsForUser(User user)
-        {
-            foreach (var mark in user.Marks)
-            {
-                yield return new MarkRequestViewModel() { Author = mark.From.FirstName, Date = mark.DateTime, Employee = mark.To.FirstName };
-            }
         }
     }
 }
