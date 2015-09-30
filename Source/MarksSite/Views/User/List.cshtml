@@ -1,0 +1,25 @@
+﻿@using Newtonsoft.Json
+@model List<MarksSite.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Список сотрудников</h2>
+<div>
+    <ul data-bind="foreach: users">
+        <li data-bind="text: name"></li>
+    </ul>
+</div>
+
+@section scripts
+{
+    @JavaScript.AddCustom("ViewModels/user-list.page.js")
+    <script type="text/javascript">
+         @{
+             IHtmlString usersList = Html.Raw(JsonConvert.SerializeObject(Model));
+         }
+        MarksSite.viewmodels.userListPage.bindUserList(@Html.Raw(usersList));
+    </script>
+}
