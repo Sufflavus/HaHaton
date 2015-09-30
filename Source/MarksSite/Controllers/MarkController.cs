@@ -18,13 +18,13 @@ namespace MarksSite.Controllers
             var toName = "Кого оценили";
             var details = new MarkDetailsViewModel()
             {
-                Cooperation = new MarkPropertyViewModel("O", ""),
-                Discipline = new MarkPropertyViewModel("O", ""),
-                Growth = new MarkPropertyViewModel("O", ""),
-                Productivity = new MarkPropertyViewModel("O", ""),
-                Quality = new MarkPropertyViewModel("O", ""),
-                Skills = new MarkPropertyViewModel("O", ""),
-                Initiative = new MarkPropertyViewModel("O", "")
+                Cooperation = new MarkPropertyViewModel(MarkType.ExceedsExpectations, ""),
+                Discipline = new MarkPropertyViewModel(MarkType.ExceedsExpectations, ""),
+                Growth = new MarkPropertyViewModel(MarkType.ExceedsExpectations, ""),
+                Productivity = new MarkPropertyViewModel(MarkType.ExceedsExpectations, ""),
+                Quality = new MarkPropertyViewModel(MarkType.ExceedsExpectations, ""),
+                Skills = new MarkPropertyViewModel(MarkType.ExceedsExpectations, ""),
+                Initiative = new MarkPropertyViewModel(MarkType.ExceedsExpectations, "")
             };
             var mark = new MarkViewModel()
             {
@@ -41,10 +41,11 @@ namespace MarksSite.Controllers
         public ActionResult AddNewMark(int forWhom)
         {
             var authorUser = (UserViewModel)Session["CurrentUser"];
-            var mark = new MarkViewModel()
+            var mark = new MarkEditModel()
             {
-                From = authorUser.FullName,
+                From = authorUser.FullName,                
                 To = "Кому оценили",
+                ToId = forWhom
             };
             return View(mark);
         }
@@ -52,6 +53,7 @@ namespace MarksSite.Controllers
         [HttpPost]
         public void SaveMark(MarkEditModel model)
         {
+            var authorUser = (UserViewModel)Session["CurrentUser"];
             model.Date = DateTime.Today;
         }
 

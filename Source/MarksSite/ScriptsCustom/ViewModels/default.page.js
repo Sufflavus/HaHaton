@@ -4,7 +4,7 @@
         var self = this;
         self.domainName = model.DomainName;
         self.name = model.FullName;
-        self.isManager = model.IsManager;
+        self.isManager = !model.IsManager;
         self.requests = initRequests();
 
         function initRequests() {

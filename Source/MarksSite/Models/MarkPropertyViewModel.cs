@@ -4,13 +4,13 @@ namespace MarksSite.Models
 {
     public class MarkPropertyViewModel
     {
-        public MarkPropertyViewModel(string value, string comment)
+        public MarkPropertyViewModel(MarkType value, string comment)
         {
             Value = value;
             Comment = comment;
         }
 
-        public string Value { get; set; }
+        public MarkType Value { get; set; }
         public string Comment { get; set; }
     }
 }

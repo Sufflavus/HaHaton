@@ -1,12 +1,10 @@
 ﻿MarksSite.viewmodels.markNewPage = function ($, ko) {
 
     function Mark(model) {
-        var self = this;
-        self.fromId = model.FromId;
+        var self = this;        
         self.toId = model.ToId;
         self.from = model.From;
-        self.to = model.To;
-        self.date = model.Date;
+        self.to = model.To;        
 
         self.markDetails = {
             Productivity: {
@@ -62,17 +60,16 @@
             }
         ];
 
-        self.saveMark = function () {
-            var data = ko.toJSON(self);
-            data.FromId = self.fromId;
-            data.ToId = self.toId;
-            data.MarkDetails = data.markDetails;
-            data.markType = null;
-            console.log(data);
+        self.saveMark = function () {           
+            var dataForPost = JSON.parse(ko.toJSON(self));                                    
+            dataForPost.ToId = self.toId;
+            dataForPost.MarkDetails = dataForPost.markDetails;
+            dataForPost.markType = null;
+            
             $.ajax({
                 type: "POST",
                 url: "/Mark/SaveMark",
-                data: JSON.stringify(data),
+                data: JSON.stringify(dataForPost),
                 success: function () {
                     window.location.href = "/";
                 },
