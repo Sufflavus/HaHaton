@@ -14,13 +14,13 @@ namespace MarksSite.Controllers
         
         public ActionResult Index()
         {
-            User user = GetUserByLogin(HttpContext.User.Identity.Name);
-            //var identity = HttpContext.User.Identity;
-            return View(user);
+            UserViewModel userViewModel = GetUserByLogin(HttpContext.User.Identity.Name);
+            //var identity = HttpContext.UserViewModel.Identity;
+            return View(userViewModel);
         }
 
         
-        private static User GetUserByLogin(string login)
+        private static UserViewModel GetUserByLogin(string login)
         {
             using (
                 var userContext = new PrincipalContext(
@@ -31,10 +31,10 @@ namespace MarksSite.Controllers
                 {
                     if (userPrincipal != null)
                     {
-                        var requests = new List<MarkRequest>();
-                        requests.Add(new MarkRequest(){Author = "df", Date = DateTime.Now, Employee = "Empl"});
-                        requests.Add(new MarkRequest(){Author = "2", Date = DateTime.Now, Employee = "Empl2"});
-                        return new User
+                        var requests = new List<MarkRequestViewModel>();
+                        requests.Add(new MarkRequestViewModel(){Author = "df", Date = DateTime.Now, Employee = "Empl"});
+                        requests.Add(new MarkRequestViewModel(){Author = "2", Date = DateTime.Now, Employee = "Empl2"});
+                        return new UserViewModel
                             {
                                 Email = userPrincipal.EmailAddress,
                                 FullName = userPrincipal.DisplayName,

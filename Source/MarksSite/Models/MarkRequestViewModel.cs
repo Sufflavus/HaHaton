@@ -2,7 +2,7 @@
 
 namespace MarksSite.Models
 {
-    public class MarkRequest
+    public class MarkRequestViewModel
     {
         public string Author { get; set; }
         public DateTime Date { get; set; }
