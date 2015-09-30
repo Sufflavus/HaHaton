@@ -1,0 +1,9 @@
+﻿@helper Add(string fileName)
+{
+    <link rel="stylesheet" type="text/css" href="@Href("~/Content/" + fileName)">
+}
+
+@helper AddBootstrap()
+{
+    @Add("bootstrap.css")
+}
