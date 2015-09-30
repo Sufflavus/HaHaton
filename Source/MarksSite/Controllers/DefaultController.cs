@@ -1,4 +1,6 @@
-﻿using System.DirectoryServices.AccountManagement;
+﻿using System;
+using System.Collections.Generic;
+using System.DirectoryServices.AccountManagement;
 using System.Web.Mvc;
 using MarksSite.Extensions;
 using MarksSite.Models;
@@ -9,20 +11,16 @@ namespace MarksSite.Controllers
     {
         //
         // GET: /Default/
-
+        
         public ActionResult Index()
         {
-            User user = GetUserByLoginOrDefault(HttpContext.User.Identity.Name);
+            User user = GetUserByLogin(HttpContext.User.Identity.Name);
             //var identity = HttpContext.User.Identity;
             return View(user);
         }
 
-        /// <summary>
-        ///     Получить пользователя из AD по логину.
-        /// </summary>
-        /// <param name="login">Логин пользователя в AD.</param>
-        /// <returns>Пользователь из AD.</returns>
-        private static User GetUserByLoginOrDefault(string login)
+        
+        private static User GetUserByLogin(string login)
         {
             using (
                 var userContext = new PrincipalContext(
@@ -33,6 +31,9 @@ namespace MarksSite.Controllers
                 {
                     if (userPrincipal != null)
                     {
+                        var requests = new List<MarkRequest>();
+                        requests.Add(new MarkRequest(){Author = "df", Date = DateTime.Now, Employee = "Empl"});
+                        requests.Add(new MarkRequest(){Author = "2", Date = DateTime.Now, Employee = "Empl2"});
                         return new User
                             {
                                 Email = userPrincipal.EmailAddress,
@@ -40,7 +41,8 @@ namespace MarksSite.Controllers
                                 DomainName = userPrincipal.UserPrincipalName,
                                 IsManager = userPrincipal.IsManager(),
                                 Department = userPrincipal.GetDepartment(),
-                                JobPosition = userPrincipal.GetJobPosition()
+                                JobPosition = userPrincipal.GetJobPosition(),
+                                Requests = requests
                             };
                     }
                     return null;

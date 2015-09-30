@@ -21,7 +21,7 @@ namespace MarksSite
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            //InitDataBase();
+            InitDataBase();
         }
 
         private static void InitDataBase()

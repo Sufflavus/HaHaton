@@ -9,6 +9,30 @@
 }
 
 <h2 data-bind="text: name"></h2>
+<div>
+    <div>
+        <button class="ui-button">Мои оценки</button>
+        <button class="ui-button" data-bind="visible: isManager">Оценить</button>
+    </div>
+    <div class="requests" data-bind="visible: isManager">
+        <h3>Запросы</h3>
+        <ul data-bind="foreach: requests">
+            <li>
+                <div>
+                    Дата: <span data-bind="text: date"></span>
+                </div>
+                <div>
+                    Автор: <span data-bind="text: author"></span>
+                </div>
+                <div>
+                    Кого оценить: <span data-bind="text: employee"></span>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+
+</div>
 
 @section scripts
 {
