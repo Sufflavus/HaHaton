@@ -11,7 +11,7 @@
 <h2 data-bind="text: name"></h2>
 <div>
     <div>
-        <a href="@Url.Action("List","Mark",new {userId=Model.Id})" class="btn btn-large btn-primary">Мои оценки</a>
+        <a href="@Url.Action("List","Mark",new {userId=Model.Id})" class="btn btn-primary">Мои оценки</a>
         <a href="#" class="btn btn-large btn-primary" data-bind="visible: isManager">Оценить</a>
     </div>
     <div class="requests" data-bind="visible: isManager">
