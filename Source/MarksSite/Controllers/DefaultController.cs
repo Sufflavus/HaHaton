@@ -23,14 +23,13 @@ namespace MarksSite.Controllers
 
         private static IEnumerable<MarkRequestViewModel> GetRequestsForUser(User user)
         {
-            foreach (Mark mark in user.Marks)
+            foreach (MarkRequest request in user.MarkRequests)
             {
                 yield return
                     new MarkRequestViewModel
                         {
-                            Author = mark.From.FirstName,
-                            Date = mark.DateTime,
-                            Employee = mark.To.FirstName
+                            Author = request.User.FirstName,
+                            Date = request.Date
                         };
             }
         }

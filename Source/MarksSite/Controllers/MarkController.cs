@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using MarksDal;
 using MarksSite.Models;
+using Newtonsoft.Json;
 
 namespace MarksSite.Controllers
 {
     public class MarkController : Controller
     {
-        //
-        // GET: /MarkViewModel/
+        private static readonly Repository repository = new Repository();
 
         public ActionResult AddNewMark(int forWhom)
         {
@@ -24,56 +25,40 @@ namespace MarksSite.Controllers
 
         public ActionResult List(int userId)
         {
-            string toName = "Кого оценили";
-            var details = new MarkDetailsViewModel
+            List<Mark> marks = repository.GetMarksByUser(userId);
+            var result = new List<MarkViewModel>();
+            marks.ForEach(x =>
                 {
-                    Cooperation = new MarkPropertyViewModel
+                    var mark = new MarkViewModel
                         {
-                            Value = MarkType.ExceedsExpectations,
-                            Comment = "sf"
-                        },
-                    Discipline = new MarkPropertyViewModel
-                        {
-                            Value = MarkType.ExceedsExpectations
-                        },
-                    Growth = new MarkPropertyViewModel
-                        {
-                            Value = MarkType.ExceedsExpectations
-                        },
-                    Productivity = new MarkPropertyViewModel
-                        {
-                            Value = MarkType.ExceedsExpectations
-                        },
-                    Quality = new MarkPropertyViewModel
-                        {
-                            Value = MarkType.ExceedsExpectations
-                        },
-                    Skills = new MarkPropertyViewModel
-                        {
-                            Value = MarkType.ExceedsExpectations
-                        },
-                    Initiative = new MarkPropertyViewModel
-                        {
-                            Value = MarkType.ExceedsExpectations
-                        }
-                };
-            var mark = new MarkViewModel
-                {
-                    From = "Кто оценил",
-                    To = toName,
-                    Date = DateTime.Today,
-                    MarkDetails = details
-                };
-            var list = new List<MarkViewModel>();
-            list.Add(mark);
-            return View(list);
+                            From = x.From.FirstName,
+                            To = x.To.FirstName,
+                            Date = x.DateTime,
+                            MarkDetails = JsonConvert.DeserializeObject<MarkDetailsViewModel>(x.Json)
+                        };
+                    result.Add(mark);
+                });
+            return View(result);
         }
 
         [HttpPost]
         public void SaveMark(MarkEditModel model)
         {
             var authorUser = (UserViewModel) Session["CurrentUser"];
-            //model.Date = DateTime.Today;
+            model.Date = DateTime.Today;
+            model.FromId = authorUser.Id;
+
+            repository.AddMarks(new List<Mark>
+                {
+                    new Mark
+                        {
+                            DateTime = model.Date.Value,
+                            FromId = model.FromId.Value,
+                            ToId = model.ToId,
+                            Json = JsonConvert.SerializeObject(model.MarkDetails)
+                        }
+                });
+            repository.Save();
         }
     }
 }

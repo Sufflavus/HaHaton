@@ -22,17 +22,22 @@ namespace MarksDal
             context.Users.InsertAllOnSubmit(users);
         }
 
-        public User GetUserByActivedirectoryId(string id)
-        {
-            return context.Users.FirstOrDefault(i => i.ActiveDirectoryId == id);
-        }
-
         public void CreateDatabase()
         {
             if (!context.DatabaseExists())
             {
                 context.CreateDatabase();
             }
+        }
+
+        public List<Mark> GetMarksByUser(int userId)
+        {
+            return context.Marks.Where(x => x.ToId == userId).ToList();
+        }
+
+        public User GetUserByActivedirectoryId(string id)
+        {
+            return context.Users.FirstOrDefault(i => i.ActiveDirectoryId == id);
         }
 
         public List<User> GetUsers()

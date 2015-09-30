@@ -61,16 +61,20 @@
         ];
 
         self.saveMark = function () {
-            var dataForPost = JSON.parse(ko.toJSON(self));
-            dataForPost.ToId = self.toId;
-            dataForPost.MarkDetails = dataForPost.markDetails;
-            dataForPost.markDetails = null;
-            dataForPost.markType = null;
+            var markDetails = JSON.parse(ko.toJSON(self.markDetails));
+            
+            var data = {
+                From: "",
+                MarkDetails: markDetails,
+                To: "",
+                ToId: self.toId
+            };
+
             //console.log(dataForPost);
             $.ajax({
                 url: "/Mark/SaveMark",
                 type: "POST",
-                data: JSON.stringify(dataForPost),
+                data: JSON.stringify(data),
                 success: function () {
                     window.location.href = "/";
                 },

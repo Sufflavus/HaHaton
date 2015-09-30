@@ -1,11 +1,12 @@
 ﻿MarksSite.viewmodels.markListPage = function ($, ko) {
 
     function Mark(model) {
+        
         var self = this;
         self.from = model.From;
         self.to = model.to;
         self.date = model.Date;
-        self.markDetails = model.MarkDetails
+        self.markDetails = model.MarkDetails;
     }
 
     function bindMarkList(model) {
