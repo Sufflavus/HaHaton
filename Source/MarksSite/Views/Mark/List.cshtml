@@ -1,16 +1,18 @@
 ﻿@using System
 @using Newtonsoft.Json
-@model MarksSite.Models.MarkViewModel
+@model List<MarksSite.Models.MarkViewModel>
 @{
     ViewBag.Title = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Мои оценки</h2>
-<div class="row">
+<div class="row" data-bind="foreach: marks">
     <div class="span7">
-        <span data-bind="text: from"></span>
-        <span data-bind="text: date"></span>
+        <h3>
+            <span data-bind="text: from"></span>
+            <span data-bind="text: date"></span>
+        </h3>
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
@@ -62,11 +64,11 @@
 
 @section scripts
 {
-    @JavaScript.AddCustom("ViewModels/mark.page.js")
+    @JavaScript.AddCustom("ViewModels/mark-list.page.js")
     <script type="text/javascript">
         @{
-            IHtmlString mark = Html.Raw(JsonConvert.SerializeObject(Model));
+            IHtmlString markList = Html.Raw(JsonConvert.SerializeObject(Model));
         }
-        MarksSite.viewmodels.markPage.bindMark(@Html.Raw(mark));
+        MarksSite.viewmodels.markListPage.bindMarkList(@Html.Raw(markList));
     </script>
 }
