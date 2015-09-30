@@ -14,20 +14,32 @@ namespace MarksSite.Controllers
 
         public ActionResult List(int userId)
         {
-            IEnumerable<User> users =
-                repository.GetUsers().Where(x => x.Id != userId && !string.IsNullOrWhiteSpace(x.FirstName));
-            List<UserViewModel> userViewModels = users.Select(x => new UserViewModel
-                {
-                    Id = x.Id,
-                    Email = string.Empty,
-                    FullName = x.FirstName,
-                    DomainName = string.Empty,
-                    IsManager = (bool) x.IsManager,
-                    Department = string.Empty,
-                    JobPosition = string.Empty,
-                }).ToList();
+            var userViewModels = GetUserViewModels(userId);
 
             return View(userViewModels);
         }
+
+        public ActionResult Rate(int userId)
+        {
+            var userViewModels = GetUserViewModels(userId);
+                return View(userViewModels);
+        }
+        private static List<UserViewModel> GetUserViewModels(int userId)
+        {
+            var users =
+                repository.GetUsers().Where(x => x.Id != userId && !string.IsNullOrWhiteSpace(x.FirstName));
+            var userViewModels = users.Select(x => new UserViewModel
+            {
+                Id = x.Id,
+                Email = string.Empty,
+                FullName = x.FirstName,
+                DomainName = string.Empty,
+                IsManager = (bool) x.IsManager,
+                Department = string.Empty,
+                JobPosition = string.Empty
+            }).ToList();
+            return userViewModels;
+        }
+
     }
 }

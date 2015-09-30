@@ -7,6 +7,7 @@
         self.name = model.FullName;
         self.isManager = model.IsManager;
         self.selected = ko.observable(false);
+        self.selectedId = ko.observable();
     }
 
     function UserList(model) {
@@ -32,6 +33,20 @@
             }
             return "/mark/AddNewMark?forWhom=" + self.selectedUsers()[0];
         });
+
+        self.sendRequest = function () {
+            var list = self.selectedUsers();
+            var selectedUserIds = JSON.parse(ko.toJSON(list));
+            $.ajax({
+                url: "/User/SendUsers",
+                type: "POST",
+                data: JSON.stringify(data),
+                success: function () {
+                    window.location.href = "/";
+                },
+                contentType: "application/json"
+            });
+        }
     }
     function bindUserList(model) {
 

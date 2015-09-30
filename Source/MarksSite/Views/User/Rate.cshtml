@@ -1,0 +1,27 @@
+﻿@using Newtonsoft.Json
+@model List<MarksSite.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Оценить сотрудника";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Оценить сотрудника</h2>
+<div>
+    <select  data-bind="options: users, optionsText: 'name', optionsValue: 'id', value: selectedId, optionsCaption: 'Выберите...'"></select>
+<a class="btn btn-primary" data-bind="css: { disabled: !selectedId() }, attr: { href: markingUrl }">Оценить</a>
+
+
+</div>
+
+
+@section scripts
+{
+    @JavaScript.AddCustom("ViewModels/user-list.page.js")
+    <script type="text/javascript">
+         @{
+             IHtmlString usersList = Html.Raw(JsonConvert.SerializeObject(Model));
+         }
+        MarksSite.viewmodels.userListPage.bindUserList(@Html.Raw(usersList));
+    </script>
+}

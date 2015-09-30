@@ -10,6 +10,7 @@
 
 <div>
     <a class="btn btn-primary" data-bind="css: {disabled: selectedUsers().length != 1}, attr: {href: markingUrl}">Оценить</a>
+    <a class="btn btn-primary" data-bind="css: {disabled: !selectedUsers().length}, click: sendRequest">Отправить запрос</a>
 </div>
 
 <div>
