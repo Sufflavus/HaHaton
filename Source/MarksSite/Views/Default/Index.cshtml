@@ -14,13 +14,13 @@
 </h2>
 <div>
     <div>
-        <a href="@Url.Action("List","Mark",new {userId=Model.Id})" class="btn btn-primary">Мои оценки</a>
+        <a href="@Url.Action("List","Mark",new {userId=Model.Id})" class="btn btn-primary">Посмотреть мои оценки</a>
         <a href="@Url.Action("List","User",new {userId=Model.Id})" class="btn btn-primary" data-bind="visible: isManager">Оценить</a>
     </div>
     <div class="requests" data-bind="visible: isManager">
         <h3>Запросы</h3>
-        <ul data-bind="foreach: requests">
-            <li>
+        <ul data-bind="foreach: requests" class="list-group">
+            <li class="list-group-item">
                 <div>
                     Дата: <span data-bind="text: date"></span>
                 </div>

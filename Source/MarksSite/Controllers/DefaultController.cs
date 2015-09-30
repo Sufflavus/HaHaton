@@ -29,13 +29,15 @@ namespace MarksSite.Controllers
                     new MarkRequestViewModel
                         {
                             Author = request.User.FirstName,
-                            Date = request.Date
+                            Date = request.Date,
+                            Employee = request.Mark.To.FirstName
                         };
             }
         }
 
         private static UserViewModel GetUserByLogin(string login)
         {
+            login = "infotecs-nt/manager";
             User user = repository.GetUserByActivedirectoryId(login);
             List<MarkRequestViewModel> requests = GetRequestsForUser(user).ToList();
 

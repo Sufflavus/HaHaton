@@ -12,8 +12,6 @@
     function UserList(model) {
         var self = this;
 
-
-
         var users = model.map(function (item) {
             return new User(item);
         });
