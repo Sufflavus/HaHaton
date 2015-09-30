@@ -6,15 +6,38 @@
         self.domainName = model.DomainName;
         self.name = model.FullName;
         self.isManager = model.IsManager;
+        self.selected = ko.observable(false);
     }
 
-    function bindUserList(model) {
+    function UserList(model) {
+        var self = this;
+
+
+
         var users = model.map(function (item) {
             return new User(item);
-        })
-        var viewModel = {
-            users: users
-        };
+        });
+        self.users = users;
+
+        self.selectedUsers = ko.computed(function () {
+            var selectedItems = ko.utils.arrayFilter(self.users, function (item) {
+                return item.selected();
+            });
+            return selectedItems.map(function (item) {
+                return item.id;
+            });
+        });
+
+        self.markingUrl = ko.computed(function () {
+            if (!self.selectedUsers().length) {
+                return "#";
+            }
+            return "/mark/AddNewMark?forWhom=" + self.selectedUsers()[0];
+        });
+    }
+    function bindUserList(model) {
+
+        var viewModel = new UserList(model);
         ko.applyBindings(viewModel);
     }
 

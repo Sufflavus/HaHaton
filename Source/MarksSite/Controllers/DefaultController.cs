@@ -18,6 +18,7 @@ namespace MarksSite.Controllers
         public ActionResult Index()
         {
             UserViewModel userViewModel = GetUserByLogin(HttpContext.User.Identity.Name);
+            Session["CurrentUser"] = userViewModel;
             //var identity = HttpContext.UserViewModel.Identity;
             return View(userViewModel);
         }

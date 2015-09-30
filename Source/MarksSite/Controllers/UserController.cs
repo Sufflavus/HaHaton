@@ -14,9 +14,10 @@ namespace MarksSite.Controllers
 
         public ActionResult List(int userId)
         {
-            var users = repository.GetUsers().Where(x => x.Id != userId && !string.IsNullOrEmpty(x.FirstName));
+            var users = repository.GetUsers().Where(x => x.Id != userId && !string.IsNullOrWhiteSpace(x.FirstName));
             var userViewModels = users.Select(x => new UserViewModel()
             {
+                Id = x.Id,
                 Email = string.Empty,
                 FullName = x.FirstName,
                 DomainName = string.Empty,

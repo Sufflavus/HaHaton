@@ -38,11 +38,12 @@ namespace MarksSite.Controllers
             return View(list);
         }
 
-        public ActionResult AddNewMark(int authorId, int forWhom)
+        public ActionResult AddNewMark(int forWhom)
         {
+            var authorUser = (UserViewModel)Session["CurrentUser"];
             var mark = new MarkViewModel()
             {
-                From = "Кто оценил",
+                From = authorUser.FullName,
                 To = "Кому оценили",
             };
             return View(mark);

@@ -14,8 +14,8 @@
 </h2>
 <div>
     <div>
-        <a href="@Url.Action("List","Mark",new {userId=Model.Id})" class="btn btn-large btn-primary">Мои оценки</a>
-        <a href="@Url.Action("AddNewMark","Mark",new {authorId=Model.Id, forWhom = Model.Id})" class="btn btn-large btn-primary" data-bind="visible: isManager">Оценить</a>
+        <a href="@Url.Action("List","Mark",new {userId=Model.Id})" class="btn btn-primary">Мои оценки</a>
+        <a href="@Url.Action("List","User",new {userId=Model.Id})" class="btn btn-primary" data-bind="visible: isManager">Оценить</a>
     </div>
     <div class="requests" data-bind="visible: isManager">
         <h3>Запросы</h3>
