@@ -33,7 +33,9 @@ namespace MarksSite.Controllers
                 Date = DateTime.Today,
                 MarkDetails = details
             };
-            return View(mark);
+            var list = new List<MarkViewModel>();
+            list.Add(mark);
+            return View(list);
         }
 
     }
