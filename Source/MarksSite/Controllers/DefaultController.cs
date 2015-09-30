@@ -26,7 +26,8 @@ namespace MarksSite.Controllers
         {
             using (
                 var userContext = new PrincipalContext(
-                    ContextType.Domain, "infotecs-nt", "lr.knowledge.base", ",jrcnfgjx"))
+                    ContextType.Domain, ConfigurationWrapper.GetAdDomain(), ConfigurationWrapper.GetAdLogin(),
+                    ConfigurationWrapper.GetAdPassword()))
             {
                 using (UserPrincipal userPrincipal = UserPrincipal.FindByIdentity(userContext, login))
                 {
