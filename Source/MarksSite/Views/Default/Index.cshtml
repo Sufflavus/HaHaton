@@ -8,7 +8,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 data-bind="text: name"></h2>
+<h2>
+    Вы зашли как 
+    <span  data-bind="text: name"/>
+</h2>
 <div>
     <div>
         <a href="@Url.Action("List","Mark",new {userId=Model.Id})" class="btn btn-large btn-primary">Мои оценки</a>

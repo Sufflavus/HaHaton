@@ -38,5 +38,15 @@ namespace MarksSite.Controllers
             return View(list);
         }
 
+        public ActionResult AddNewMark(int authorId, int forWhom)
+        {
+            var mark = new MarkViewModel()
+            {
+                From = "Кто оценил",
+                To = "Кому оценили",
+            };
+            return View(mark);
+        }
+
     }
 }

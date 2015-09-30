@@ -140,6 +140,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MarkEditModel.cs" />
     <Compile Include="Models\MarkViewModel.cs" />
     <Compile Include="Models\MarkDetailsViewModel.cs" />
     <Compile Include="Models\MarkPropertyViewModel.cs" />
@@ -213,6 +214,7 @@
     <Content Include="App_Code\JavaScript.cshtml" />
     <Content Include="ScriptsCustom\namespace.js" />
     <Content Include="ScriptsCustom\ViewModels\default.page.js" />
+    <Content Include="ScriptsCustom\ViewModels\mark-add-new.page.js" />
     <Content Include="ScriptsCustom\ViewModels\mark-list.page.js" />
     <Content Include="App_Code\Css.cshtml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
@@ -247,6 +249,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Mark\List.cshtml" />
+    <Content Include="Views\Mark\AddNewMark.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
