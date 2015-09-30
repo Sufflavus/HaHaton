@@ -49,5 +49,11 @@ namespace MarksSite.Controllers
             return View(mark);
         }
 
+        [HttpPost]
+        public void SaveMark(MarkEditModel model)
+        {
+            model.Date = DateTime.Today;
+        }
+
     }
 }

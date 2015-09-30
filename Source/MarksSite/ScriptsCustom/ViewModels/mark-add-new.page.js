@@ -41,26 +41,54 @@
 
         self.markType = [
             {
-                id: 0,
+                id: 1,
                 value: "O"
             },
             {
-                id: 1,
+                id: 2,
                 value: "EE"
             },
             {
-                id: 2,
+                id: 3,
                 value: "S"
             },
             {
-                id: 3,
+                id: 4,
                 value: "NI"
             },
             {
-                id: 4,
+                id: 5,
                 value: "U"
             }
         ];
+
+        self.saveMark = function () {
+            var data = ko.toJSON(self);
+            data.FromId = self.fromId;
+            data.ToId = self.toId;
+            data.MarkDetails = data.markDetails;
+            data.markType = null;
+            console.log(data);
+            $.ajax({
+                type: "POST",
+                url: "/Mark/SaveMark",
+                data: JSON.stringify(data),
+                success: function () {
+                    window.location.href = "/";
+                },
+                contentType: "application/json"
+            });
+        };
+
+        self.isValid = ko.computed(function() {
+            return !!self.markDetails.Productivity.Value() &&
+                !!self.markDetails.Quality.Value() &&
+                !!self.markDetails.Discipline.Value() &&
+                !!self.markDetails.Cooperation.Value() &&
+                !!self.markDetails.Skills.Value() &&
+                !!self.markDetails.Initiative.Value() &&
+                !!self.markDetails.Growth.Value();
+        });
     }
 
     function bindMarkList(model) {        
