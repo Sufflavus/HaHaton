@@ -6,91 +6,92 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Оценка сотрудника <span data-bind="text: to"></span></h2>
-        <div class="span7">           
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Критерии</th>
-                        <th>Оценки</th>
-                        <th>Комментарий</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Продуктивность</td>
-                        <td >
-                            <input type="text" data-bind="value: markDetails.Productivity.Value" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Productivity.Comment" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Качество работы</td>
-                        <td >
-                            <input type="text" data-bind="value: markDetails.Quality.Value" />
-                        </td>
-                        <td >
-                            <input type="text" data-bind="value: markDetails.Quality.Comment" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Дисциплина</td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Discipline.Value" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Discipline.Comment" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Сотрудничество</td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Cooperation.Value" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Cooperation.Comment" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Профессиональные знания и навыки</td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Skills.Value" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Skills.Comment" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Инициативность</td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Initiative.Value" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Initiative.Comment" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Развитие</td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Growth.Value" />
-                        </td>
-                        <td>
-                            <input type="text" data-bind="value: markDetails.Growth.Comment" />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
-    @section scripts
+<h2>Оценка сотрудника <span data-bind="text: to"></span></h2>
+<div class="span7">           
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Критерии</th>
+                <th>Оценки</th>
+                <th>Комментарий</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Продуктивность</td>
+                <td>
+                    <select data-bind="options: markType, optionsText: 'value', optionsValue: 'id', value: markDetails.Productivity.Value, optionsCaption: 'Выберите...'"></select>
+                </td>
+                <td>
+                    <input type="text" data-bind="value: markDetails.Productivity.Comment" />
+                </td>
+            </tr>
+            <tr>
+                <td>Качество работы</td>
+                <td>
+                    <select data-bind="options: markType, optionsText: 'value', optionsValue: 'id', value: markDetails.Quality.Value, optionsCaption: 'Выберите...'"></select>
+                </td>
+                <td >
+                    <input type="text" data-bind="value: markDetails.Quality.Comment" />
+                </td>
+            </tr>
+            <tr>
+                <td>Дисциплина</td>
+                <td>
+                    <select data-bind="options: markType, optionsText: 'value', optionsValue: 'id', value: markDetails.Discipline.Value, optionsCaption: 'Выберите...'"></select>
+                </td>
+                <td>
+                    <input type="text" data-bind="value: markDetails.Discipline.Comment" />
+                </td>
+            </tr>
+            <tr>
+                <td>Сотрудничество</td>
+                <td>
+                    <select data-bind="options: markType, optionsText: 'value', optionsValue: 'id', value: markDetails.Cooperation.Value, optionsCaption: 'Выберите...'"></select>
+                </td>
+                <td>
+                    <input type="text" data-bind="value: markDetails.Cooperation.Comment" />
+                </td>
+            </tr>
+            <tr>
+                <td>Профессиональные знания и навыки</td>
+                <td>
+                    <select data-bind="options: markType, optionsText: 'value', optionsValue: 'id', value: markDetails.Skills.Value, optionsCaption: 'Выберите...'"></select>
+                </td>
+                <td>
+                    <input type="text" data-bind="value: markDetails.Skills.Comment" />
+                </td>
+            </tr>
+            <tr>
+                <td>Инициативность</td>
+                <td>
+                    <select data-bind="options: markType, optionsText: 'value', optionsValue: 'id', value: markDetails.Initiative.Value, optionsCaption: 'Выберите...'"></select>
+                </td>
+                <td>
+                    <input type="text" data-bind="value: markDetails.Initiative.Comment" />
+                </td>
+            </tr>
+            <tr>
+                <td>Развитие</td>
+                <td>
+                    <select data-bind="options: markType, optionsText: 'value', optionsValue: 'id', value: markDetails.Growth.Value, optionsCaption: 'Выберите...'"></select>
+                </td>
+                <td>
+                    <input type="text" data-bind="value: markDetails.Growth.Comment" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section scripts
 {
-        @JavaScript.AddCustom("ViewModels/mark-add-new.page.js")
-        <script type="text/javascript">
+    @JavaScript.AddCustom("ViewModels/mark-add-new.page.js")
+    <script type="text/javascript">
         @{
             IHtmlString markList = Html.Raw(JsonConvert.SerializeObject(Model));
         }
-            MarksSite.viewmodels.markNewPage.bindMarkList(@Html.Raw(markList)); 
-        </script>
-    }
+        MarksSite.viewmodels.markNewPage.bindMarkList(@Html.Raw(markList));
+    </script>
+}

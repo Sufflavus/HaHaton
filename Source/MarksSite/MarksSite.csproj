@@ -142,6 +142,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\MarkEditModel.cs" />
+    <Compile Include="Models\MarkType.cs" />
     <Compile Include="Models\MarkViewModel.cs" />
     <Compile Include="Models\MarkDetailsViewModel.cs" />
     <Compile Include="Models\MarkPropertyViewModel.cs" />

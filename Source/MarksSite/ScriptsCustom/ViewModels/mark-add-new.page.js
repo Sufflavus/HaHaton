@@ -7,6 +7,7 @@
         self.from = model.From;
         self.to = model.To;
         self.date = model.Date;
+
         self.markDetails = {
             Productivity: {
                 Value: ko.observable(),
@@ -37,6 +38,29 @@
                 Comment: ko.observable(),
             }
         };
+
+        self.markType = [
+            {
+                id: 0,
+                value: "O"
+            },
+            {
+                id: 1,
+                value: "EE"
+            },
+            {
+                id: 2,
+                value: "S"
+            },
+            {
+                id: 3,
+                value: "NI"
+            },
+            {
+                id: 4,
+                value: "U"
+            }
+        ];
     }
 
     function bindMarkList(model) {        
