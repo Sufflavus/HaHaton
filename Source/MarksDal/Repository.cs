@@ -22,6 +22,11 @@ namespace MarksDal
             context.Users.InsertAllOnSubmit(users);
         }
 
+        public User GetUserByActivedirectoryId(string id)
+        {
+            return context.Users.FirstOrDefault(i => i.ActiveDirectoryId == id);
+        }
+
         public void CreateDatabase()
         {
             if (!context.DatabaseExists())

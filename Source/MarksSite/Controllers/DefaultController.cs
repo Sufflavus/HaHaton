@@ -4,14 +4,17 @@ using System.DirectoryServices.AccountManagement;
 using System.Web.Mvc;
 using MarksSite.Extensions;
 using MarksSite.Models;
+using MarksDal;
+using System.Linq;
 
 namespace MarksSite.Controllers
 {
     public class DefaultController : Controller
     {
         //
-        // GET: /Default/
-        
+        // GET: /Default/                
+        private static Repository repository = new Repository();
+
         public ActionResult Index()
         {
             UserViewModel userViewModel = GetUserByLogin(HttpContext.User.Identity.Name);
@@ -21,32 +24,27 @@ namespace MarksSite.Controllers
 
         
         private static UserViewModel GetUserByLogin(string login)
-        {
-            using (
-                var userContext = new PrincipalContext(
-                    ContextType.Domain, ConfigurationWrapper.GetAdDomain(), ConfigurationWrapper.GetAdLogin(),
-                    ConfigurationWrapper.GetAdPassword()))
-            {
-                using (UserPrincipal userPrincipal = UserPrincipal.FindByIdentity(userContext, login))
+        {                                    
+            var user = repository.GetUserByActivedirectoryId(login);
+            var requests = GetRequestsForUser(user).ToList();
+
+            return new UserViewModel
                 {
-                    if (userPrincipal != null)
-                    {
-                        var requests = new List<MarkRequestViewModel>();
-                        requests.Add(new MarkRequestViewModel(){Author = "df", Date = DateTime.Now, Employee = "Empl"});
-                        requests.Add(new MarkRequestViewModel(){Author = "2", Date = DateTime.Now, Employee = "Empl2"});
-                        return new UserViewModel
-                            {
-                                Email = userPrincipal.EmailAddress,
-                                FullName = userPrincipal.DisplayName,
-                                DomainName = userPrincipal.UserPrincipalName,
-                                IsManager = userPrincipal.IsManager(),
-                                Department = userPrincipal.GetDepartment(),
-                                JobPosition = userPrincipal.GetJobPosition(),
-                                Requests = requests
-                            };
-                    }
-                    return null;
-                }
+                    Email = string.Empty,
+                    FullName = user.FirstName,
+                    DomainName = string.Empty,
+                    IsManager = (bool)user.IsManager,
+                    Department = string.Empty,
+                    JobPosition = string.Empty,
+                    Requests = requests
+                };
+        }
+
+        private static IEnumerable<MarkRequestViewModel> GetRequestsForUser(User user)
+        {
+            foreach (var mark in user.Marks)
+            {
+                yield return new MarkRequestViewModel() { Author = mark.From.FirstName, Date = mark.DateTime, Employee = mark.To.FirstName };
             }
         }
     }
