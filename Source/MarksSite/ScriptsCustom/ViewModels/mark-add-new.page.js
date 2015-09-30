@@ -60,15 +60,16 @@
             }
         ];
 
-        self.saveMark = function () {           
-            var dataForPost = JSON.parse(ko.toJSON(self));                                    
+        self.saveMark = function () {
+            var dataForPost = JSON.parse(ko.toJSON(self));
             dataForPost.ToId = self.toId;
             dataForPost.MarkDetails = dataForPost.markDetails;
+            dataForPost.markDetails = null;
             dataForPost.markType = null;
-            
+            //console.log(dataForPost);
             $.ajax({
-                type: "POST",
                 url: "/Mark/SaveMark",
+                type: "POST",
                 data: JSON.stringify(dataForPost),
                 success: function () {
                     window.location.href = "/";

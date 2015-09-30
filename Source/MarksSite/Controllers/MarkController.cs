@@ -54,7 +54,7 @@ namespace MarksSite.Controllers
         public void SaveMark(MarkEditModel model)
         {
             var authorUser = (UserViewModel)Session["CurrentUser"];
-            model.Date = DateTime.Today;
+            //model.Date = DateTime.Today;
         }
 
     }

@@ -10,6 +10,10 @@ namespace MarksSite.Models
             Comment = comment;
         }
 
+        public MarkPropertyViewModel()
+        {
+        }
+
         public MarkType Value { get; set; }
         public string Comment { get; set; }
     }
