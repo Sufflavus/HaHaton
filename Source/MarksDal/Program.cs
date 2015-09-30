@@ -43,6 +43,7 @@ namespace MarksDal
                 FirstName = "dd",
                 LastName = "ddd",
                 MiddleName = "ddd",
+                IsManager = false
                // Parent = repository.GetUsers().Where(i => i.Id == 2).First()
             }});
             repository.Save();
