@@ -37,7 +37,6 @@ namespace MarksSite.Controllers
 
         private static UserViewModel GetUserByLogin(string login)
         {
-            login = "infotecs-nt/manager";
             User user = repository.GetUserByActivedirectoryId(login);
             List<MarkRequestViewModel> requests = GetRequestsForUser(user).ToList();
 
